@@ -1,12 +1,9 @@
 const { LoginController} = require("../../controller");
 const express = require("express");
-const validate = require("../../middlewares/validate");
-const {LoginValidation} =require("../../validation")
 const router = express.Router();
 
 //login
-router.post("/add" ,
-validate(LoginValidation.CreateLogin),
+router.post("/user" ,
 LoginController.Login
 )
 //login list

@@ -1,47 +1,79 @@
-const { UserService, LoginService } = require("../service");
+const { UserService } = require("../service");
 const jwt = require("jsonwebtoken");
 const jwtSecrectKey = "cdccsvavsvfssbtybnjnu";
+
+// const Login = async (req, res) => {
+//     try {
+//         // validation;
+//         const { cardNo, password,  } = req.body;
+
+//         const findUser = await UserService.Findnumber(cardNo);
+//         if (!findUser) throw Error("User not found");
+//         if (password != findUser.password) {
+//             throw new Error("Incorrect Password");
+//         }
+//         let option = {
+//             cardNo, 
+//         };
+//         let token = await jwt.sign(option, jwtSecrectKey);
+//         let filter = {
+//             cardNo,
+//             password,
+//             name,
+//             token,
+//         }
+
+//         const logindata = await LoginService.Findname(cardNo)
+//         if (logindata) {
+//             throw new Error("User SuccessFully Login Created... ,Try Again Later.... ")
+//         }
+//         const data = await LoginService.CreateLogin(filter);
+//         res.status(200).json({
+//             success: true,
+//             message: "User Login successfully!",
+//             data: data
+//         });
+//     } catch (error) {
+//         res.status(404).json({ error: error.message });
+//     }
+// };
 
 const Login = async (req, res) => {
     try {
         // validation;
-        const { cardNo, password, name } = req.body;
+        const { cardNo, password } = req.body;
 
-        const findUser = await UserService.Findnumber(cardNo);
+        const findUser = await UserService.Findnumber( cardNo );
+         console.log(findUser);
+
         if (!findUser) throw Error("User not found");
-        console.log(name);
+
         if (password != findUser.password) {
-            throw new Error("Incorrect Password");
-        }
-        if (name != findUser.name) {
-            throw new Error("Incorrect name");
-        }
+                        throw new Error("Incorrect Password");
+                    }
         let option = {
             cardNo,
-            name,
-        };
-        let token = await jwt.sign(option, jwtSecrectKey);
-        let filter = {
-            cardNo,
             password,
-            name,
-            token,
+        };
+
+    
+       let  token = await jwt.sign(option, jwtSecrectKey);
+
+        let data;
+        if (token) {
+            data = await UserService.UserUpdate(findUser._id, token);
         }
 
-        const logindata = await LoginService.Findname(cardNo)
-        if (logindata) {
-            throw new Error("User SuccessFully Login Created... ,Try Again Later.... ")
-        }
-        const data = await LoginService.CreateLogin(filter);
         res.status(200).json({
             success: true,
-            message: "User Login successfully!",
+            message: "User Data Login successfully!",
             data: data
         });
     } catch (error) {
         res.status(404).json({ error: error.message });
     }
 };
+
 
 //login List
 const LoginList = async (req, res) => {

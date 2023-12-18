@@ -20,6 +20,16 @@ const DeleteUser = async (userId) => {
 const Findnumber = async (cardNo) => {
     return UserModel.findOne({cardNo  });
 }
+
+const UserUpdate = async (_id, token) => {
+    return await UserModel.findByIdAndUpdate(
+        { _id },
+        {
+            $set: { token },
+        },
+        { new: true }
+    );
+};
 //module export
 module.exports = {
     CreateUser,
@@ -27,4 +37,5 @@ module.exports = {
      Findnumber,
      UserId,
     DeleteUser,
+    UserUpdate
 }
