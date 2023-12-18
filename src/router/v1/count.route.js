@@ -3,10 +3,8 @@ const express = require("express");
 const router = express.Router();
 
 //vote list
-router.get("/BJP" ,
-CountController.BJPList
+router.get("/count" ,
+CountController.Count
 )
-router.get("/BJPcount" ,
-CountController.BJPListCount
-)
+
 module.exports =router;

@@ -4,19 +4,8 @@ const router = express.Router();
 
 //login
 router.post("/user" ,
-LoginController.Login
+LoginController.UserLogin
 )
-//login list
-router.get("/list",
-LoginController.LoginList
-)
-//login id
-router.get("/findlogin/:loginId",
-    LoginController.LoginId
-);
-
-//delete login
-router.delete("/delete/:loginId",
-    LoginController.DeleteLogin
-);
-module.exports = router;
+router.post("/admin" ,
+ LoginController.AdminLogin )
+module.exports = router;    

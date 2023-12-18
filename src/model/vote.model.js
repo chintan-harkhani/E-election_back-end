@@ -6,10 +6,6 @@ const VoteSchema = new mongoose.Schema(
              type:mongoose.Types.ObjectId,
              ref:"User"
         },
-        // partylist:{
-        //      type:mongoose.Types.ObjectId,
-        //      ref:"Partylist",
-        // },
             party:{
                 type:mongoose.Types.ObjectId,
                 ref:"Party"

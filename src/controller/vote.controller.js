@@ -1,5 +1,5 @@
 const { VoteService} = require("../service");
-
+const {VoteModel} =require("../model");
 //create  vote
 const CreateVote = async (req, res) => {
     try {
@@ -12,7 +12,6 @@ const CreateVote = async (req, res) => {
         if (!party) {
             throw new Error(" party Vote Not Created , Please Try  Again Later");
         };
-
         res.status(200).json({
             success: true,
             message: " SuccessFully Party Vote List Data  Created ..!",
@@ -27,11 +26,10 @@ const CreateVote = async (req, res) => {
 const VoteAllList = async (req, res) => {
     try {
         const List = await VoteService.VoteList(req, res);
-         console.log(count);
         res.status(200).json({
             success: true,
             message: "Party Vote SuccessFully Display Get !.....",
-            data: List ,count
+            data: List
         });
     } catch (error) {
         res.status(400).json({ success: false, message: error.message });

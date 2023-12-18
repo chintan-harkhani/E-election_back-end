@@ -5,3 +5,4 @@ module.exports.PartyController = require("./party.controller");
 module.exports.PartyListController = require("./partylist.controller");
 module.exports.VoteController = require("./vote.controller");
 module.exports.CountController = require("./count.controller");
+module.exports.AdminController = require("./admin.controller");

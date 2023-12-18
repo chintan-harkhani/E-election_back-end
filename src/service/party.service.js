@@ -7,10 +7,13 @@ const { PartyModel} = require("../model");
     //find Party name
 const FindName = async (party_name) => {
     return PartyModel.findOne({ party_name });
-}
+}   
 // party list
 const PartyList = async (req, res) => {
     return PartyModel.find()
+};
+const PartyListes = async (party_name) => {
+    return PartyModel.find({party_name})
 };
 //party id
 const partyId = async (partyId) => {
@@ -26,4 +29,5 @@ module.exports = {
     PartyList,
     partyId,
     DeleteParty,
+    PartyListes
 }

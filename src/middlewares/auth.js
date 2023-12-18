@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const {LoginModel} = require("../model");
+const {UserModel} = require("../model");
 const config = require("../config/config");
 
 // auth function create
@@ -19,7 +19,7 @@ const auth = () => async (req, res, next) => {
         if (!decoded) {
             return next(new Error("Please Enter Valid Token !"));
         }
-        const users = await LoginModel.findOne({cardNo: decoded.cardNo });
+        const users = await UserModel.findOne({cardNo: decoded.cardNo });
         if (!users) {
             return next(new Error("Please Authenticate ..."));
         }
